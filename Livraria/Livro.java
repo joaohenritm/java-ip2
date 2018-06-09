@@ -1,4 +1,4 @@
-package livraria;
+package livraria; // classe base
 
 public class Livro {
 
