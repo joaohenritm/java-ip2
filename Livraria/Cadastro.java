@@ -1,4 +1,3 @@
-// LEMBRETE: TERMINAR AS OUTRAS EXIGENCIAS DO METODO CADASTRO!
 package livraria;
 
 import java.util.Scanner;
@@ -82,6 +81,9 @@ public class Cadastro {
         for (int i = 0; i < total; i++) {
             System.out.println("Livro " + (i + 1) + "\n" + livros[i]);
         }
+        if (total == 0) {
+            System.out.println("Não existem livros cadastrados no momento.");
+        }
     }
 
     public void exibirTituloPreco() {
@@ -97,6 +99,46 @@ public class Cadastro {
         }
         if (i == total) {
             System.out.print("Não foi encontrado um livro desse autor.");
+        }
+    }
+    public int buscaBinaria (int isbn) {
+        int inicio = 0, meio, fim = total - 1;
+        do {
+            meio = (inicio + fim) /2;
+            if (livros[meio].getISBN()== isbn) {
+                return meio;
+            }
+            else if (isbn < livros[meio].getISBN()) {
+                fim = meio - 1;
+            }
+            else {
+                inicio = meio + 1;
+            }
+        } while (inicio <= fim);
+        return -1; // não achou 
+    }
+    public void removerLivro (int isbn) {
+        int i, j;
+        boolean achou = false;
+        for (i = 0; i < total; i++) { // loop de busca
+            if (livros[i].getISBN() == isbn) {
+                achou = true;
+                break;
+            }
+            else if (livros[i].getISBN() > isbn) {
+                break;
+            }
+        }
+        if (achou == false) {
+            System.out.println("ISBN não cadastrado."); 
+        }
+        else { // remoção do livro
+            for (j = i; j < total - 1; j++) {
+                livros [j] = livros [j+1];
+            }
+            livros [j] = null;
+            total--;
+            System.out.println("Livro removido com sucesso.");
         }
     }
 

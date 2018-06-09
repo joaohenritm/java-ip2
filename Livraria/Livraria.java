@@ -16,6 +16,7 @@ public class Livraria {
                     + "2- Exibir os livros cadastrados. \n"
                     + "3- Exibir livros e preços de um determinado autor. \n"
                     + "4- Exibir livro mais caro e mais barato e seus respectivos preços. \n"
+                    + "5- Remover um livro cadastrado. \n"
                     + "Resposta: ");
             op = entrada.nextInt();
             switch (op) {
@@ -32,6 +33,11 @@ public class Livraria {
                     break;
                 case 4:
                     cad.vefCaroBarato();
+                    break;
+                case 5:
+                    System.out.print("Insira o ISBN do livro que vai ser removido: ");
+                    ISBN = entrada.nextInt();
+                    cad.removerLivro(ISBN);
                     break;
             }
         } while (op != 0);
